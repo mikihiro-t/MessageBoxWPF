@@ -1,4 +1,4 @@
-﻿Credits & Licenses for third-party libraries
+Credits & Licenses for third-party libraries
 
 Fluent UI System Icons
     Copyright(c) 2020 Microsoft Corporation

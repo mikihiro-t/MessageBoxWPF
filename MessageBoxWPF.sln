@@ -5,6 +5,13 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBoxWPF", "MessageBoxWPF\MessageBoxWPF.csproj", "{4943D226-CA75-4481-B34D-D4E7773AD789}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{70B97CE0-A56D-4331-9509-E77587F0F709}"
+	ProjectSection(SolutionItems) = preProject
+		CREDITS.txt = CREDITS.txt
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

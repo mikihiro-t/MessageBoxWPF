@@ -1,4 +1,4 @@
-﻿# MessageBoxWPF
+# MessageBoxWPF
 Alternative MessageBox for WPF.
 
 ## Features
