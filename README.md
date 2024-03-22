@@ -1,4 +1,4 @@
-# MessageBoxWPF
+﻿# MessageBoxWPF
 Alternative MessageBox for WPF.
 
 ## Features
@@ -14,10 +14,12 @@ Alternative MessageBox for WPF.
 - .NET 6
 
 ## History
+- 2024-03-22 Ver 1.1
 - 2022-02-06 Ver 1.0
 
 ## Maintenance
-Taisido@[Ganges](https://ganges.pro/)
+Taisidô@[Ganges](https://ganges.pro/)
 
 ## License
-MIT
+Copyright (c) 2022 Taisidô Mikihiro (Ganges)  
+Released under the MIT license

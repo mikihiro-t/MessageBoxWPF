@@ -255,14 +255,14 @@ namespace MessageBoxWPF
         {
             InitializeComponent();
             Message = message;
-            if (owner is not null) this.Owner = owner;
+            if (owner is not null && PresentationSource.FromVisual(owner) is not null) this.Owner = owner;
         }
         public MessageBoxEx(string message, string appendedMessage, Window? owner = null)
         {
             InitializeComponent();
             Message = message;
             AppendedMessage = appendedMessage;
-            if (owner is not null) this.Owner = owner;
+            if (owner is not null && PresentationSource.FromVisual(owner) is not null) this.Owner = owner;
         }
         public MessageBoxEx(string message, MessageBoxButton button, MessageBoxImage image, Window? owner = null)
         {
@@ -270,7 +270,7 @@ namespace MessageBoxWPF
             Message = message;
             Button = button;
             Image = image;
-            if (owner is not null) this.Owner = owner;
+            if (owner is not null && PresentationSource.FromVisual(owner) is not null) this.Owner = owner;
         }
         public MessageBoxEx(string message, string appendedMessage, MessageBoxButton button, MessageBoxImage image, Window? owner = null)
         {
@@ -279,7 +279,7 @@ namespace MessageBoxWPF
             AppendedMessage = appendedMessage;
             Button = button;
             Image = image;
-            if (owner is not null) this.Owner = owner;
+            if (owner is not null && PresentationSource.FromVisual(owner) is not null) this.Owner = owner;
         }
         public MessageBoxEx(string message, MessageBoxButton button, MessageBoxImage image, Brush color, Window? owner = null)
         {
@@ -288,7 +288,7 @@ namespace MessageBoxWPF
             Button = button;
             Image = image;
             Color = color;
-            if (owner is not null) this.Owner = owner;
+            if (owner is not null && PresentationSource.FromVisual(owner) is not null) this.Owner = owner;
         }
         public MessageBoxEx(string message, string appendedMessage, MessageBoxButton button, MessageBoxImage image, Brush color, Window? owner = null)
         {
@@ -298,7 +298,7 @@ namespace MessageBoxWPF
             Button = button;
             Image = image;
             Color = color;
-            if (owner is not null) this.Owner = owner;
+            if (owner is not null && PresentationSource.FromVisual(owner) is not null) this.Owner = owner;
         }
         #endregion
         //
