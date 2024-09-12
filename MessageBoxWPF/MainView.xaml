@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainView"
     Width="520"
-    Height="640"
+    Height="660"
     FontSize="14"
     mc:Ignorable="d">
     <Grid>
@@ -16,10 +16,10 @@
             HorizontalAlignment="Center"
             Orientation="Vertical">
             <StackPanel Width="400" Orientation="Vertical">
-                <Label FontWeight="Bold">Message/Appended</Label>
+                <Label FontWeight="Bold">Message/Appended/Help URL</Label>
                 <TextBox
                     x:Name="Message"
-                    Height="80"
+                    Height="60"
                     AcceptsReturn="True"
                     Text="Message"
                     TextWrapping="Wrap" />
@@ -30,6 +30,14 @@
                     AcceptsReturn="True"
                     TextWrapping="Wrap">
                     Appended Message
+                </TextBox>
+                <TextBox
+                    Name="Help"
+                    Height="20"
+                    Margin="0,10,0,0"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap">
+                    https://ganges.pro
                 </TextBox>
                 <Button
                     Width="180"

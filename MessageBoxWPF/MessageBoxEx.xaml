@@ -9,6 +9,7 @@
     Width="440"
     MinHeight="180"
     MaxHeight="300"
+    d:Background="White"
     AllowsTransparency="True"
     Background="Transparent"
     FontSize="14"
@@ -51,6 +52,124 @@
         <DockPanel>
             <!--#region Buttons-->
             <Grid DockPanel.Dock="Bottom">
+                <!--  https://stackoverflow.com/a/14562868  -->
+                <Button
+                    Name="HelpButton"
+                    Width="20"
+                    Height="20"
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Left"
+                    d:Visibility="Visible"
+                    Background="Transparent"
+                    Click="HelpButton_Click"
+                    Visibility="Collapsed">
+                    <!--  fluent:question-circle-20-regular  -->
+                    <!--<Path
+                        Data="M10 2a8 8 0 1 1 0 16a8 8 0 0 1 0-16m0 1a7 7 0 1 0 0 14a7 7 0 0 0 0-14m0 10.5a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5m0-8a2.5 2.5 0 0 1 1.651 4.377l-.154.125l-.219.163l-.087.072a2 2 0 0 0-.156.149c-.339.36-.535.856-.535 1.614a.5.5 0 0 1-1 0c0-1.012.293-1.752.805-2.298a3 3 0 0 1 .356-.323l.247-.185l.118-.1A1.5 1.5 0 1 0 8.5 8a.5.5 0 0 1-1 .001A2.5 2.5 0 0 1 10 5.5"
+                        Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                        Stretch="Fill" />-->
+
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource MessageBoxButtonStyle}" TargetType="Button">
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <!--  https://stackoverflow.com/a/64225320  -->
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ContentPresenter />
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Transparent" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+
+                            <!--  https://running-cs.hatenablog.com/entry/2016/04/19/230648  -->
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#003E92" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <Path
+                                                Data="M10 2a8 8 0 1 1 0 16a8 8 0 0 1 0-16m0 11.5a.75.75 0 1 0 0 1.5a.75.75 0 0 0 0-1.5m0-8A2.5 2.5 0 0 0 7.5 8a.5.5 0 0 0 1 0a1.5 1.5 0 1 1 2.632.984l-.106.11l-.118.1l-.247.185a3 3 0 0 0-.356.323C9.793 10.248 9.5 10.988 9.5 12a.5.5 0 0 0 1 0c0-.758.196-1.254.535-1.614l.075-.076l.08-.073l.088-.072l.219-.163l.154-.125A2.5 2.5 0 0 0 10 5.5"
+                                                Fill="#0067C0"
+                                                Stretch="Fill" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter Property="Foreground" Value="#5C5C5C" />
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <Path
+                                                Data="M10 2a8 8 0 1 1 0 16a8 8 0 0 1 0-16m0 1a7 7 0 1 0 0 14a7 7 0 0 0 0-14m0 10.5a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5m0-8a2.5 2.5 0 0 1 1.651 4.377l-.154.125l-.219.163l-.087.072a2 2 0 0 0-.156.149c-.339.36-.535.856-.535 1.614a.5.5 0 0 1-1 0c0-1.012.293-1.752.805-2.298a3 3 0 0 1 .356-.323l.247-.185l.118-.1A1.5 1.5 0 1 0 8.5 8a.5.5 0 0 1-1 .001A2.5 2.5 0 0 1 10 5.5"
+                                                Fill="#003E92"
+                                                Stretch="Fill" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+
+                <!--<Button
+                    Name="HelpButton"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Click="Button_Click">
+                    <Button.Resources>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="HelpIcon" Property="Fill" Value="DarkBlue" />
+                                    <Setter Property="RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform ScaleX="2" ScaleY="2" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+                                </Trigger>
+
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Resources>-->
+                <!--<Button.Resources>
+                        <Style BasedOn="{StaticResource MessageBoxButtonStyle}" TargetType="Button">
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                        </Style>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4" />
+                        </Style>
+                    </Button.Resources>-->
+
+                <!--<Viewbox Margin="0,0,0,0">
+                -->
+                <!--  fluent:question-circle-20-regular  -->
+                <!--
+                        <Path
+                            x:Name="HelpIcon"
+                            d:Visibility="Visible"
+                            Data="M10 2a8 8 0 1 1 0 16a8 8 0 0 1 0-16m0 1a7 7 0 1 0 0 14a7 7 0 0 0 0-14m0 10.5a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5m0-8a2.5 2.5 0 0 1 1.651 4.377l-.154.125l-.219.163l-.087.072a2 2 0 0 0-.156.149c-.339.36-.535.856-.535 1.614a.5.5 0 0 1-1 0c0-1.012.293-1.752.805-2.298a3 3 0 0 1 .356-.323l.247-.185l.118-.1A1.5 1.5 0 1 0 8.5 8a.5.5 0 0 1-1 .001A2.5 2.5 0 0 1 10 5.5"
+                            Fill="DarkBlue" />
+                    </Viewbox>-->
+
+
+
+                <!--</Button>-->
+
                 <StackPanel
                     Name="ButtonsArea"
                     Margin="0,15,20,15"
@@ -60,6 +179,7 @@
                         Name="LeftButton"
                         Height="30"
                         MinWidth="80"
+                        Padding="5,2"
                         d:Content="Left"
                         Click="Button_Click"
                         Style="{StaticResource MessageBoxButtonStyle}">
@@ -74,6 +194,7 @@
                         Height="30"
                         MinWidth="80"
                         Margin="4,0,0,0"
+                        Padding="5,2"
                         d:Content="Middle"
                         Click="Button_Click"
                         Style="{StaticResource MessageBoxButtonStyle}">
@@ -88,6 +209,7 @@
                         Height="30"
                         MinWidth="80"
                         Margin="4,0,0,0"
+                        Padding="5,2"
                         d:Content="Right"
                         Click="Button_Click"
                         Style="{StaticResource MessageBoxButtonStyle}">

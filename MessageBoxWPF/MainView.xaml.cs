@@ -27,26 +27,34 @@ namespace MessageBoxWPF
                 case "Information":
                     MessageEx.ShowInformationDialog(Message.Text);
                     MessageEx.ShowInformationDialog(Message.Text, Appended.Text);
+                    MessageEx.ShowInformationDialog(Message.Text, Appended.Text, Help.Text);
                     MessageEx.ShowInformationDialog(Message.Text, this);
                     MessageEx.ShowInformationDialog(Message.Text, Appended.Text, this);
+                    MessageEx.ShowInformationDialog(Message.Text, Appended.Text, Help.Text, this);
                     break;
                 case "Question":
                     MessageEx.ShowQuestionDialog(Message.Text);
                     MessageEx.ShowQuestionDialog(Message.Text, Appended.Text);
+                    MessageEx.ShowQuestionDialog(Message.Text, Appended.Text, Help.Text);
                     MessageEx.ShowQuestionDialog(Message.Text, this);
                     MessageEx.ShowQuestionDialog(Message.Text, Appended.Text, this);
+                    MessageEx.ShowQuestionDialog(Message.Text, Appended.Text, Help.Text, this);
                     break;
                 case "Warning":
                     MessageEx.ShowWarningDialog(Message.Text);
                     MessageEx.ShowWarningDialog(Message.Text, Appended.Text);
+                    MessageEx.ShowWarningDialog(Message.Text, Appended.Text, Help.Text);
                     MessageEx.ShowWarningDialog(Message.Text, this);
                     MessageEx.ShowWarningDialog(Message.Text, Appended.Text, this);
+                    MessageEx.ShowWarningDialog(Message.Text, Appended.Text, Help.Text, this);
                     break;
                 case "Error":
                     MessageEx.ShowErrorDialog(Message.Text);
                     MessageEx.ShowErrorDialog(Message.Text, Appended.Text);
+                    MessageEx.ShowErrorDialog(Message.Text, Appended.Text, Help.Text);
                     MessageEx.ShowErrorDialog(Message.Text, this);
                     MessageEx.ShowErrorDialog(Message.Text, Appended.Text, this);
+                    MessageEx.ShowErrorDialog(Message.Text, Appended.Text, Help.Text, this);
                     break;
             }
         }
@@ -54,6 +62,7 @@ namespace MessageBoxWPF
         {
             MessageEx.ShowInformation(Message.Text);
             MessageEx.ShowInformation(Message.Text, Appended.Text);
+            MessageEx.ShowInformation(Message.Text, Appended.Text, Help.Text);
         }
         private void ShowWithGeneralOptionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -109,11 +118,13 @@ namespace MessageBoxWPF
             if (((Button)sender).Name == "ShowWithColorButton")
             {
                 MessageEx.Show(Message.Text, Appended.Text, messageBoxButton, messageBoxImage, brush);
+                MessageEx.Show(Message.Text, Appended.Text, Help.Text, messageBoxButton, messageBoxImage, brush);
             }
             else if (((Button)sender).Name == "ShowDialogWithColorButton")
             {
                 MessageEx.ShowDialog(Message.Text, Appended.Text, messageBoxButton, messageBoxImage, brush);
                 MessageEx.ShowDialog(Message.Text, Appended.Text, messageBoxButton, messageBoxImage, brush, this);
+                MessageEx.ShowDialog(Message.Text, Appended.Text, Help.Text, messageBoxButton, messageBoxImage, brush, this);
             }
             else
             {//Show With Options Button
@@ -124,6 +135,7 @@ namespace MessageBoxWPF
                     Color = brush,
                     Message = Message.Text,
                     AppendedMessage = Appended.Text,
+                    Help = Help.Text,
                     Image = messageBoxImage,
                     Button = messageBoxButton,
                     Owner = this,
