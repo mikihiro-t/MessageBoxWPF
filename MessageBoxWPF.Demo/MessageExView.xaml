@@ -1,0 +1,117 @@
+﻿<Window
+    x:Class="MessageBoxWPF.Demo.MessageExView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MessageBoxWPF.Demo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Show by MessageEx"
+    Width="520"
+    Height="660"
+    FontSize="14"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel
+            Margin="10"
+            HorizontalAlignment="Center"
+            Orientation="Vertical">
+            <StackPanel Width="400" Orientation="Vertical">
+                <Label FontWeight="Bold">Message/Appended/Help URL</Label>
+                <TextBox
+                    x:Name="Message"
+                    Height="60"
+                    AcceptsReturn="True"
+                    Text="Message"
+                    TextWrapping="Wrap" />
+                <TextBox
+                    Name="Appended"
+                    Height="80"
+                    Margin="0,10,0,0"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap">
+                    Appended Message
+                </TextBox>
+                <TextBox
+                    Name="Help"
+                    Height="20"
+                    Margin="0,10,0,0"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap">
+                    https://ganges.pro
+                </TextBox>
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <Label Width="100" FontWeight="Bold">Icon</Label>
+                    <ComboBox
+                        Name="DialogType"
+                        Width="180"
+                        HorizontalAlignment="Left"
+                        SelectedIndex="0">
+                        <ComboBoxItem>Information</ComboBoxItem>
+                        <ComboBoxItem>Question YesNo</ComboBoxItem>
+                        <ComboBoxItem>Question YesNoCancel</ComboBoxItem>
+                        <ComboBoxItem>Question OKCancel</ComboBoxItem>
+                        <ComboBoxItem>Warning</ComboBoxItem>
+                        <ComboBoxItem>Error</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <Button
+                    Width="180"
+                    Height="30"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Right"
+                    Click="ShowButton_Click">
+                    Show/ShowDialog
+                </Button>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Width="100" FontWeight="Bold">Button</Label>
+                <ComboBox
+                    Name="ButtonType"
+                    Width="120"
+                    HorizontalAlignment="Left"
+                    SelectedIndex="0">
+                    <ComboBoxItem>OK</ComboBoxItem>
+                    <ComboBoxItem>OKCancel</ComboBoxItem>
+                    <ComboBoxItem>YesNo</ComboBoxItem>
+                    <ComboBoxItem>YesNoCancel</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Width="100" FontWeight="Bold">Color</Label>
+                <TextBox
+                    Name="Color"
+                    Width="100"
+                    Height="30"
+                    HorizontalAlignment="Left">
+                    #E81123
+                </TextBox>
+            </StackPanel>
+            <Button
+                Name="ShowWithParameters"
+                Width="180"
+                Height="30"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Right"
+                Click="ShowWithGeneralOptionButton_Click">
+                Show with Parameters
+            </Button>
+            <Button
+                Name="ShowDialogWithParameters"
+                Width="180"
+                Height="30"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Right"
+                Click="ShowWithGeneralOptionButton_Click">
+                ShowDialog with Parameters
+            </Button>
+            <Button
+                Width="180"
+                Height="30"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Right"
+                Click="ShowWithGeneralOptionButton_Click">
+                Show with Options
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
