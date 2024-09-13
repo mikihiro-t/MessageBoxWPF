@@ -6,11 +6,11 @@ using System.Windows.Media;
 
 namespace MessageBoxWPF.Demo;
 
-public partial class MainWindow : Window
+public partial class IDialogServiceView : Window
 {
     private readonly IDialogService _dialogService = Ioc.Default.GetRequiredService<IDialogService>();
 
-    public MainWindow()
+    public IDialogServiceView()
     {
         InitializeComponent();
 
@@ -189,25 +189,24 @@ public partial class MainWindow : Window
             MessageEx.ShowErrorDialog("Color is Invalid", ex.Message, this);
             return;
         }
-        if (((Button)sender).Name == "ShowDialogButton")
-        {
-            _dialogService.ShowDialogOnWindow(message, appended, messageBoxButton, messageBoxImage);
-
-            _dialogService.ShowDialogOnWindow(message, appended, help, messageBoxButton, messageBoxImage);
-            _dialogService.ShowDialogOnWindow(message, appended, messageBoxButton, messageBoxImage, brush);
-            _dialogService.ShowDialogOnWindow(message, appended, help, messageBoxButton, messageBoxImage, brush);
-        }
-        else if (((Button)sender).Name == "ShowWithColorButton")
+        if (((Button)sender).Name == "ShowWithParameters")
         {
             _dialogService.Show(message, appended, messageBoxButton, messageBoxImage, brush);
             _dialogService.Show(message, appended, help, messageBoxButton, messageBoxImage, brush);
         }
-        else if (((Button)sender).Name == "ShowDialogWithColorButton")
+        else if (((Button)sender).Name == "ShowDialogWithParameters")
         {
             _dialogService.ShowDialog(message, appended, messageBoxButton, messageBoxImage);
             _dialogService.ShowDialog(message, appended, help, messageBoxButton, messageBoxImage);
+
+            _dialogService.ShowDialogOnWindow(message, appended, messageBoxButton, messageBoxImage);
+            _dialogService.ShowDialogOnWindow(message, appended, help, messageBoxButton, messageBoxImage);
+
             _dialogService.ShowDialog(message, appended, messageBoxButton, messageBoxImage, brush);
             _dialogService.ShowDialog(message, appended, help, messageBoxButton, messageBoxImage, brush);
+
+            _dialogService.ShowDialogOnWindow(message, appended, messageBoxButton, messageBoxImage, brush);
+            _dialogService.ShowDialogOnWindow(message, appended, help, messageBoxButton, messageBoxImage, brush);
         }
         else
         {//Show With Options Button
@@ -215,12 +214,15 @@ public partial class MainWindow : Window
             {
                  //MessageBoxEx Property
                 { "IsEnabledEffect", true},
-                //{ "Owner", this},　//SetValueでエラー
+                //{ "Owner", this},　//Error in SetValue
                 { "OKCaption" ,   "ok"},
                 { "NoCaption" ,  "no"},
                 { "YesCaption" ,  "yes"},
                 { "CancelCaption" ,   "cancel"},
-                { "BackgroundString" ,"#f3f2f1"}, //System.Windows.Media.Brushを、BackgroundColorに、直接SetValueすると、エラーになるため文字列を利用にした。
+
+                //If you directly set the BackgroundColor of a System.Windows.Media.Brush using SetValue, an error will occur, so we used a string instead.
+                //System.Windows.Media.Brushを、BackgroundColorに、直接SetValueすると、エラーになるため文字列を利用にした。
+                { "BackgroundString" ,"#f3f2f1"}, 
 
                 //WindowProperty
                 { "SizeToContent", SizeToContent.Manual },
@@ -228,7 +230,6 @@ public partial class MainWindow : Window
                 { "Height", 500 },
                 { "MaxHeight", 500 },
             };
-
             _dialogService.ShowMessageBoxEx(message, appended, help, messageBoxButton, messageBoxImage, brush, properties);
 
             var properties2 = new Dictionary<string, object>()
@@ -249,5 +250,11 @@ public partial class MainWindow : Window
             };
             _dialogService.ShowMessageBoxExOnWindow(message, appended, help, messageBoxButton, messageBoxImage, brush, properties2);
         }
+    }
+
+    private void CaluculateButton_Click(object sender, RoutedEventArgs e)
+    {
+        var cls = new CaluculateModel(this.Tag.ToString());
+        cls.Add(1, 2);
     }
 }

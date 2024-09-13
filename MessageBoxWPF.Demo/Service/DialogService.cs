@@ -1,8 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows;
-using MessageBoxWPF;
 
 namespace MessageBoxWPF.Demo.Service;
 
@@ -10,19 +7,25 @@ public interface IDialogService
 {
     string WindowGuid { get; set; }
 
-    #region Show Error Dialog
+    #region Show Information Dialog
 
-    MessageBoxResult ShowErrorDialog(string message);
+    MessageBoxResult ShowInformation(string message);
 
-    MessageBoxResult ShowErrorDialog(string message, string messageAppend);
+    MessageBoxResult ShowInformation(string message, string messageAppend);
 
-    MessageBoxResult ShowErrorDialog(string message, string messageAppend, string help);
+    MessageBoxResult ShowInformation(string message, string messageAppend, string help);
 
-    MessageBoxResult ShowErrorDialogOnWindow(string message);
+    MessageBoxResult ShowInformationDialog(string message);
 
-    MessageBoxResult ShowErrorDialogOnWindow(string message, string messageAppend);
+    MessageBoxResult ShowInformationDialog(string message, string messageAppend);
 
-    MessageBoxResult ShowErrorDialogOnWindow(string message, string messageAppend, string help);
+    MessageBoxResult ShowInformationDialog(string message, string messageAppend, string help);
+
+    MessageBoxResult ShowInformationDialogOnWindow(string message);
+
+    MessageBoxResult ShowInformationDialogOnWindow(string message, string messageAppend);
+
+    MessageBoxResult ShowInformationDialogOnWindow(string message, string messageAppend, string help);
 
     #endregion
 
@@ -114,33 +117,27 @@ public interface IDialogService
 
     #endregion
 
-    #region Show Information Dialog
+    #region Show Error Dialog
 
-    MessageBoxResult ShowInformationDialog(string message);
+    MessageBoxResult ShowErrorDialog(string message);
 
-    MessageBoxResult ShowInformationDialog(string message, string messageAppend);
+    MessageBoxResult ShowErrorDialog(string message, string messageAppend);
 
-    MessageBoxResult ShowInformationDialog(string message, string messageAppend, string help);
+    MessageBoxResult ShowErrorDialog(string message, string messageAppend, string help);
 
-    MessageBoxResult ShowInformationDialogOnWindow(string message);
+    MessageBoxResult ShowErrorDialogOnWindow(string message);
 
-    MessageBoxResult ShowInformationDialogOnWindow(string message, string messageAppend);
+    MessageBoxResult ShowErrorDialogOnWindow(string message, string messageAppend);
 
-    MessageBoxResult ShowInformationDialogOnWindow(string message, string messageAppend, string help);
+    MessageBoxResult ShowErrorDialogOnWindow(string message, string messageAppend, string help);
 
     #endregion
 
-    MessageBoxResult ShowInformation(string message);
-
-    MessageBoxResult ShowInformation(string message, string messageAppend);
-
-    MessageBoxResult ShowInformation(string message, string messageAppend, string help);
-
+    #region General Dialog
 
     MessageBoxResult Show(string message, string messageAppend, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color);
 
     MessageBoxResult Show(string message, string messageAppend, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color);
-
 
     MessageBoxResult ShowDialog(string message, string messageAppend, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage);
 
@@ -150,7 +147,6 @@ public interface IDialogService
 
     MessageBoxResult ShowDialog(string message, string messageAppend, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color);
 
-
     MessageBoxResult ShowDialogOnWindow(string message, string messageAppend, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage);
 
     MessageBoxResult ShowDialogOnWindow(string message, string messageAppend, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage);
@@ -159,54 +155,73 @@ public interface IDialogService
 
     MessageBoxResult ShowDialogOnWindow(string message, string messageAppend, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color);
 
- 
+    #endregion
+
+    #region Dialog With Properties
+
     MessageBoxResult ShowMessageBoxEx(string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color, Dictionary<string, object> properties);
+
     MessageBoxResult ShowMessageBoxExOnWindow(string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color, Dictionary<string, object> properties);
 
+    #endregion
 }
-
-
 
 public class DialogService : IDialogService
 {
     /// <summary>
+    /// Using set, you can set the Guid of an existing Window from outside and make that Window the Owner.
     /// setで、外部から、すでにあるWindowのGuidをセットして、そのWindowをOwnerにできる。
     /// </summary>
-    public string WindowGuid { get; set; } = Guid.NewGuid().ToString("N");  //ハイフンがなくても、MainViewでNameのセットでエラーになるようだ。
+    public string WindowGuid { get; set; } = Guid.NewGuid().ToString("N"); 
 
-    #region Show Error Dialog
+    #region Show Information Dialog
 
-    public MessageBoxResult ShowErrorDialog(string message)
+    public MessageBoxResult ShowInformation(string message)
     {
-        return MessageEx.ShowErrorDialog(message);
+        return MessageEx.ShowInformation(message);
     }
 
-    public MessageBoxResult ShowErrorDialog(string message, string messageAppend)
+    public MessageBoxResult ShowInformation(string message, string messageAppend)
     {
-        return MessageEx.ShowErrorDialog(message, messageAppend);
+        return MessageEx.ShowInformation(message, messageAppend);
     }
 
-    public MessageBoxResult ShowErrorDialog(string message, string messageAppend, string help)
+    public MessageBoxResult ShowInformation(string message, string messageAppend, string help)
     {
-        return MessageEx.ShowErrorDialog(message, messageAppend, help);
+        return MessageEx.ShowInformation(message, messageAppend, help);
     }
 
-    public MessageBoxResult ShowErrorDialogOnWindow(string message)
+    public MessageBoxResult ShowInformationDialog(string message)
+    {
+        return MessageEx.ShowInformationDialog(message);
+    }
+
+    public MessageBoxResult ShowInformationDialog(string message, string messageAppend)
+    {
+        return MessageEx.ShowInformationDialog(message, messageAppend);
+    }
+
+    public MessageBoxResult ShowInformationDialog(string message, string messageAppend, string help)
+    {
+        return MessageEx.ShowInformationDialog(message, messageAppend, help);
+    }
+
+    public MessageBoxResult ShowInformationDialogOnWindow(string message)
     {
         var w = GetWindow();
-        return w is not null ? MessageEx.ShowErrorDialog(message, w) : MessageEx.ShowErrorDialog(message);
+        return w is not null ? MessageEx.ShowInformationDialog(message, w) : MessageEx.ShowInformationDialog(message);
     }
 
-    public MessageBoxResult ShowErrorDialogOnWindow(string message, string messageAppend)
+    public MessageBoxResult ShowInformationDialogOnWindow(string message, string messageAppend)
     {
         var w = GetWindow();
-        return w is not null ? MessageEx.ShowErrorDialog(message, messageAppend, w) : MessageEx.ShowErrorDialog(message, messageAppend);
+        return w is not null ? MessageEx.ShowInformationDialog(message, messageAppend, w) : MessageEx.ShowInformationDialog(message, messageAppend);
     }
 
-    public MessageBoxResult ShowErrorDialogOnWindow(string message, string messageAppend, string help)
+    public MessageBoxResult ShowInformationDialogOnWindow(string message, string messageAppend, string help)
     {
         var w = GetWindow();
-        return w is not null ? MessageEx.ShowErrorDialog(message, messageAppend, help, w) : MessageEx.ShowErrorDialog(message, messageAppend, help);
+        return w is not null ? MessageEx.ShowInformationDialog(message, messageAppend, help, w) : MessageEx.ShowInformationDialog(message, messageAppend, help);
     }
 
     #endregion
@@ -249,22 +264,27 @@ public class DialogService : IDialogService
     #endregion
 
     #region Show Question YesNoCancel Dialog
+
     public MessageBoxResult ShowQuestionYesNoCancelDialog(string message)
     {
         return MessageEx.ShowQuestionYesNoCancelDialog(message);
     }
+
     public MessageBoxResult ShowQuestionYesNoCancelDialog(string message, string messageAppend)
     {
         return MessageEx.ShowQuestionYesNoCancelDialog(message, messageAppend);
     }
+
     public MessageBoxResult ShowQuestionYesNoCancelDialog(string message, string messageAppend, string help)
     {
         return MessageEx.ShowQuestionYesNoCancelDialog(message, messageAppend, help);
     }
+
     public MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialog(string message, string yesCaption, string noCaption, string cancelCaption)
     {
         return MessageEx.ShowQuestionYesNoCancelCustomCaptionDialog(message, yesCaption, noCaption, cancelCaption);
     }
+
     public MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialog(string message, string messageAppend, string yesCaption, string noCaption, string cancelCaption)
     {
         return MessageEx.ShowQuestionYesNoCancelCustomCaptionDialog(message, messageAppend, yesCaption, noCaption, cancelCaption);
@@ -275,30 +295,30 @@ public class DialogService : IDialogService
         return MessageEx.ShowQuestionYesNoCancelCustomCaptionDialog(message, messageAppend, help, yesCaption, noCaption, cancelCaption);
     }
 
-
     public MessageBoxResult ShowQuestionYesNoCancelDialogOnWindow(string message)
     {
         var w = GetWindow();
         return w is not null ? MessageEx.ShowQuestionYesNoCancelDialog(message, w) : MessageEx.ShowQuestionYesNoCancelDialog(message);
     }
+
     public MessageBoxResult ShowQuestionYesNoCancelDialogOnWindow(string message, string messageAppend)
     {
         var w = GetWindow();
         return w is not null ? MessageEx.ShowQuestionYesNoCancelDialog(message, messageAppend, w) : MessageEx.ShowQuestionYesNoCancelDialog(message, messageAppend);
     }
+
     public MessageBoxResult ShowQuestionYesNoCancelDialogOnWindow(string message, string messageAppend, string help)
     {
         var w = GetWindow();
         return w is not null ? MessageEx.ShowQuestionYesNoCancelDialog(message, messageAppend, help, w) : MessageEx.ShowQuestionYesNoCancelDialog(message, messageAppend, help);
     }
 
-
-
     public MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialogOnWindow(string message, string yesCaption, string noCaption, string cancelCaption)
     {
         var w = GetWindow();
         return w is not null ? MessageEx.ShowQuestionYesNoCancelCustomCaptionDialog(message, yesCaption, noCaption, cancelCaption, w) : MessageEx.ShowQuestionYesNoCancelCustomCaptionDialog(message, yesCaption, noCaption, cancelCaption);
     }
+
     public MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialogOnWindow(string message, string messageAppend, string yesCaption, string noCaption, string cancelCaption)
     {
         var w = GetWindow();
@@ -313,19 +333,22 @@ public class DialogService : IDialogService
 
     #endregion
 
+    #region Show Question OKCancel Dialog
+
     public MessageBoxResult ShowQuestionOKCancelDialog(string message)
     {
         return MessageEx.ShowQuestionOKCancelDialog(message);
     }
+
     public MessageBoxResult ShowQuestionOKCancelDialog(string message, string messageAppend)
     {
         return MessageEx.ShowQuestionOKCancelDialog(message, messageAppend);
     }
+
     public MessageBoxResult ShowQuestionOKCancelDialog(string message, string messageAppend, string help)
     {
         return MessageEx.ShowQuestionOKCancelDialog(message, messageAppend, help);
     }
-
 
     public MessageBoxResult ShowQuestionOKCancelCustomCaptionDialog(string message, string okCaption, string cancelCaption)
     {
@@ -342,32 +365,29 @@ public class DialogService : IDialogService
         return MessageEx.ShowQuestionOKCancelCustomCaptionDialog(message, messageAppend, help, okCaption, cancelCaption);
     }
 
-
     public MessageBoxResult ShowQuestionOKCancelDialogOnWindow(string message)
     {
         var w = GetWindow();
         return w is not null ? MessageEx.ShowQuestionOKCancelDialog(message, w) : MessageEx.ShowQuestionOKCancelDialog(message);
     }
+
     public MessageBoxResult ShowQuestionOKCancelDialogOnWindow(string message, string messageAppend)
     {
         var w = GetWindow();
         return w is not null ? MessageEx.ShowQuestionOKCancelDialog(message, messageAppend, w) : MessageEx.ShowQuestionOKCancelDialog(message, messageAppend);
     }
+
     public MessageBoxResult ShowQuestionOKCancelDialogOnWindow(string message, string messageAppend, string help)
     {
         var w = GetWindow();
         return w is not null ? MessageEx.ShowQuestionOKCancelDialog(message, messageAppend, help, w) : MessageEx.ShowQuestionOKCancelDialog(message, messageAppend, help);
     }
 
-
-
     public MessageBoxResult ShowQuestionOKCancelCustomCaptionDialogOnWindow(string message, string okCaption, string cancelCaption)
     {
         var w = GetWindow();
-        return w is not null ? MessageEx.ShowQuestionOKCancelCustomCaptionDialog(message, okCaption, cancelCaption, w) : MessageEx.ShowQuestionOKCancelDialog(message, okCaption, cancelCaption);
+        return w is not null ? MessageEx.ShowQuestionOKCancelCustomCaptionDialog(message, okCaption, cancelCaption, w) : MessageEx.ShowQuestionOKCancelCustomCaptionDialog(message, okCaption, cancelCaption);
     }
-
-
 
     public MessageBoxResult ShowQuestionOKCancelCustomCaptionDialogOnWindow(string message, string messageAppend, string okCaption, string cancelCaption)
     {
@@ -381,8 +401,7 @@ public class DialogService : IDialogService
         return w is not null ? MessageEx.ShowQuestionOKCancelCustomCaptionDialog(message, messageAppend, help, okCaption, cancelCaption, w) : MessageEx.ShowQuestionOKCancelCustomCaptionDialog(message, messageAppend, help, okCaption, cancelCaption);
     }
 
-
-
+    #endregion
 
     #region Show Warning Dialog
 
@@ -421,54 +440,39 @@ public class DialogService : IDialogService
 
     #endregion
 
-    #region Show Information Dialog
+    #region Show Error Dialog
 
-    public MessageBoxResult ShowInformationDialog(string message)
+    public MessageBoxResult ShowErrorDialog(string message)
     {
-        return MessageEx.ShowInformationDialog(message);
+        return MessageEx.ShowErrorDialog(message);
     }
 
-    public MessageBoxResult ShowInformationDialog(string message, string messageAppend)
+    public MessageBoxResult ShowErrorDialog(string message, string messageAppend)
     {
-        return MessageEx.ShowInformationDialog(message, messageAppend);
+        return MessageEx.ShowErrorDialog(message, messageAppend);
     }
 
-    public MessageBoxResult ShowInformationDialog(string message, string messageAppend, string help)
+    public MessageBoxResult ShowErrorDialog(string message, string messageAppend, string help)
     {
-        return MessageEx.ShowInformationDialog(message, messageAppend, help);
+        return MessageEx.ShowErrorDialog(message, messageAppend, help);
     }
 
-    public MessageBoxResult ShowInformationDialogOnWindow(string message)
+    public MessageBoxResult ShowErrorDialogOnWindow(string message)
     {
         var w = GetWindow();
-        return w is not null ? MessageEx.ShowInformationDialog(message, w) : MessageEx.ShowInformationDialog(message);
+        return w is not null ? MessageEx.ShowErrorDialog(message, w) : MessageEx.ShowErrorDialog(message);
     }
 
-    public MessageBoxResult ShowInformationDialogOnWindow(string message, string messageAppend)
+    public MessageBoxResult ShowErrorDialogOnWindow(string message, string messageAppend)
     {
         var w = GetWindow();
-        return w is not null ? MessageEx.ShowInformationDialog(message, messageAppend, w) : MessageEx.ShowInformationDialog(message, messageAppend);
+        return w is not null ? MessageEx.ShowErrorDialog(message, messageAppend, w) : MessageEx.ShowErrorDialog(message, messageAppend);
     }
 
-    public MessageBoxResult ShowInformationDialogOnWindow(string message, string messageAppend, string help)
+    public MessageBoxResult ShowErrorDialogOnWindow(string message, string messageAppend, string help)
     {
         var w = GetWindow();
-        return w is not null ? MessageEx.ShowInformationDialog(message, messageAppend, help, w) : MessageEx.ShowInformationDialog(message, messageAppend, help);
-    }
-
-    public MessageBoxResult ShowInformation(string message)
-    {
-        return MessageEx.ShowInformation(message);
-    }
-
-    public MessageBoxResult ShowInformation(string message, string messageAppend)
-    {
-        return MessageEx.ShowInformation(message, messageAppend);
-    }
-
-    public MessageBoxResult ShowInformation(string message, string messageAppend, string help)
-    {
-        return MessageEx.ShowInformation(message, messageAppend, help);
+        return w is not null ? MessageEx.ShowErrorDialog(message, messageAppend, help, w) : MessageEx.ShowErrorDialog(message, messageAppend, help);
     }
 
     #endregion
@@ -543,22 +547,25 @@ public class DialogService : IDialogService
 
     #endregion
 
- 
+    #region Dialog With Properties
 
-    public MessageBoxResult ShowMessageBoxEx(string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color , Dictionary<string, object> properties )
+    public MessageBoxResult ShowMessageBoxEx(string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color, Dictionary<string, object> properties)
     {
         return MessageEx.ShowMessageBoxEx(message, appendedMessage, help, messageBoxButton, messageBoxImage, color, properties);
     }
+
     public MessageBoxResult ShowMessageBoxExOnWindow(string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color, Dictionary<string, object> properties)
     {
         var w = GetWindow(); if (w is not null)
             return MessageEx.ShowMessageBoxEx(message, appendedMessage, help, messageBoxButton, messageBoxImage, color, properties, w);
         else
             return MessageEx.ShowMessageBoxEx(message, appendedMessage, help, messageBoxButton, messageBoxImage, color, properties);
-
-
     }
+
+    #endregion
+
     /// <summary>
+    /// Returns the window that matches the GuId set in the tag. If there is none, returns null.
     /// Tagにセットされている、識別用のGuIdが一致するWinodowを返す。無い時は、null。
     /// </summary>
     /// <returns></returns>
@@ -566,6 +573,7 @@ public class DialogService : IDialogService
     {
         if (!string.IsNullOrEmpty(WindowGuid))
         {
+            //When you call GetWindow from another thread, Application.Current.Windows returns the following error: "System.InvalidOperationException: 'The calling thread cannot access this object because it is owned by another thread.'"
             //Application.Current.Windowsは、別スレッドからGetWindowを呼び出すと、「System.InvalidOperationException: 'このオブジェクトは別のスレッドに所有されているため、呼び出しスレッドはこのオブジェクトにアクセスできません。'」となる。
             foreach (Window window in Application.Current.Windows)
             {
@@ -575,6 +583,4 @@ public class DialogService : IDialogService
         }
         return null;
     }
-
-
 }

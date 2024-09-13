@@ -18,10 +18,10 @@ public partial class App : Application
             .AddTransient<IDialogService, DialogService>()
             .BuildServiceProvider());
 
-        var mainView = new MainView();
-        mainView.Show();
+        var view1 = new MessageExView();
+        view1.Show();
 
-        var mainView2 = new MainWindow();
-        mainView2.Show();
+        var view2 = new IDialogServiceView();
+        view2.Show();
     }
 }
