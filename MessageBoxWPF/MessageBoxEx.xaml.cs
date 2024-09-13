@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MessageBoxWPF;
 
@@ -88,39 +79,214 @@ public static class MessageEx
 
     #endregion
 
-    #region Question Dialog
+    #region Question YesNo Dialog
 
-    public static MessageBoxResult ShowQuestionDialog(string message)
+    public static MessageBoxResult ShowQuestionYesNoDialog(string message)
     {
-        return ShowQuestionDialog(message, "", "");
+        return ShowQuestionYesNoDialog(message, "", "");
     }
 
-    public static MessageBoxResult ShowQuestionDialog(string message, string appendedMessage)
+    public static MessageBoxResult ShowQuestionYesNoDialog(string message, string appendedMessage)
     {
-        return ShowQuestionDialog(message, appendedMessage, "");
+        return ShowQuestionYesNoDialog(message, appendedMessage, "");
     }
 
-    public static MessageBoxResult ShowQuestionDialog(string message, string appendedMessage, string help)
+    public static MessageBoxResult ShowQuestionYesNoDialog(string message, string appendedMessage, string help)
     {
         var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.YesNo, MessageBoxImage.Question);
         cls.ShowDialog();
         return cls.Result;
     }
 
-    public static MessageBoxResult ShowQuestionDialog(string message, Window owner)
+    public static MessageBoxResult ShowQuestionYesNoDialog(string message, Window owner)
     {
-        return ShowQuestionDialog(message, "", "", owner);
+        return ShowQuestionYesNoDialog(message, "", "", owner);
     }
 
-    public static MessageBoxResult ShowQuestionDialog(string message, string appendedMessage, Window owner)
+    public static MessageBoxResult ShowQuestionYesNoDialog(string message, string appendedMessage, Window owner)
     {
-        return ShowQuestionDialog(message, appendedMessage, "", owner);
+        return ShowQuestionYesNoDialog(message, appendedMessage, "", owner);
     }
 
-    public static MessageBoxResult ShowQuestionDialog(string message, string appendedMessage, string help, Window owner)
+    public static MessageBoxResult ShowQuestionYesNoDialog(string message, string appendedMessage, string help, Window owner)
     {
         owner.Opacity = 0.7;
         var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.YesNo, MessageBoxImage.Question, owner);
+        cls.ShowDialog();
+        owner.Opacity = 1;
+        return cls.Result;
+    }
+
+    #endregion
+
+    #region Question YesNoCancel Dialog
+    public static MessageBoxResult ShowQuestionYesNoCancelDialog(string message)
+    {
+        return ShowQuestionYesNoCancelDialog(message, "", "");
+    }
+    public static MessageBoxResult ShowQuestionYesNoCancelDialog(string message, string appendedMessage)
+    {
+        return ShowQuestionYesNoCancelDialog(message, appendedMessage, "");
+    }
+    public static MessageBoxResult ShowQuestionYesNoCancelDialog(string message, string appendedMessage, string help)
+    {
+        var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+        cls.ShowDialog();
+        return cls.Result;
+    }
+
+
+
+    public static MessageBoxResult ShowQuestionYesNoCancelDialog(string message, Window owner)
+    {
+        return ShowQuestionYesNoCancelDialog(message, "", "", owner);
+    }
+    public static MessageBoxResult ShowQuestionYesNoCancelDialog(string message, string appendedMessage, Window owner)
+    {
+        return ShowQuestionYesNoCancelDialog(message, appendedMessage, "", owner);
+    }
+    public static MessageBoxResult ShowQuestionYesNoCancelDialog(string message, string appendedMessage, string help, Window owner)
+    {
+        owner.Opacity = 0.7;
+        var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.YesNoCancel, MessageBoxImage.Question, owner);
+        cls.ShowDialog();
+        owner.Opacity = 1;
+        return cls.Result;
+    }
+
+
+
+    public static MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialog(string message, string yesCaption, string noCaption, string cancelCaption)
+    {
+        return ShowQuestionYesNoCancelCustomCaptionDialog(message, "", "", yesCaption, noCaption, cancelCaption);
+    }
+
+    public static MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialog(string message, string appendedMessage, string yesCaption, string noCaption, string cancelCaption)
+    {
+        return ShowQuestionYesNoCancelCustomCaptionDialog(message, appendedMessage, "", yesCaption, noCaption, cancelCaption);
+    }
+
+    public static MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialog(string message, string appendedMessage, string help, string yesCaption, string noCaption, string cancelCaption)
+    {
+        var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.YesNoCancel, MessageBoxImage.Question)
+        {
+            YesCaption = yesCaption,
+            NoCaption = noCaption,
+            CancelCaption = cancelCaption,
+        };
+        cls.ShowDialog();
+        return cls.Result;
+    }
+
+
+
+
+    public static MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialog(string message, string yesCaption, string noCaption, string cancelCaption, Window owner)
+    {
+        return ShowQuestionYesNoCancelCustomCaptionDialog(message, "", "", yesCaption, noCaption, cancelCaption, owner);
+    }
+    public static MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialog(string message, string appendedMessage, string yesCaption, string noCaption, string cancelCaption, Window owner)
+    {
+        return ShowQuestionYesNoCancelCustomCaptionDialog(message, appendedMessage, "", yesCaption, noCaption, cancelCaption, owner);
+    }
+
+    public static MessageBoxResult ShowQuestionYesNoCancelCustomCaptionDialog(string message, string appendedMessage, string help, string yesCaption, string noCaption, string cancelCaption, Window owner)
+    {
+        owner.Opacity = 0.7;
+        var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.YesNoCancel, MessageBoxImage.Question, owner)
+        {
+            YesCaption = yesCaption,
+            NoCaption = noCaption,
+            CancelCaption = cancelCaption,
+        };
+        cls.ShowDialog();
+        owner.Opacity = 1;
+        return cls.Result;
+    }
+
+    #endregion
+
+    #region Question OKCancel Dialog
+
+    public static MessageBoxResult ShowQuestionOKCancelDialog(string message)
+    {
+        return ShowQuestionOKCancelDialog(message, "", "");
+    }
+    public static MessageBoxResult ShowQuestionOKCancelDialog(string message, string appendedMessage)
+    {
+
+        return ShowQuestionOKCancelDialog(message, appendedMessage, "");
+    }
+    public static MessageBoxResult ShowQuestionOKCancelDialog(string message, string appendedMessage, string help)
+    {
+        var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.OKCancel, MessageBoxImage.Question);
+        cls.ShowDialog();
+        return cls.Result;
+    }
+
+
+
+
+    public static MessageBoxResult ShowQuestionOKCancelCustomCaptionDialog(string message, string okCaption, string cancelCaption)
+    {
+        return ShowQuestionOKCancelCustomCaptionDialog(message, "", "", okCaption, cancelCaption);
+    }
+
+    public static MessageBoxResult ShowQuestionOKCancelCustomCaptionDialog(string message, string appendedMessage, string okCaption, string cancelCaption)
+    {
+        return ShowQuestionOKCancelCustomCaptionDialog(message, appendedMessage, "", okCaption, cancelCaption);
+    }
+
+    public static MessageBoxResult ShowQuestionOKCancelCustomCaptionDialog(string message, string appendedMessage, string help, string okCaption, string cancelCaption)
+    {
+        var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.OKCancel, MessageBoxImage.Question)
+        {
+            OKCaption = okCaption,
+            CancelCaption = cancelCaption
+        };
+        cls.ShowDialog();
+        return cls.Result;
+    }
+
+
+
+
+    public static MessageBoxResult ShowQuestionOKCancelDialog(string message, Window owner)
+    {
+        return ShowQuestionOKCancelDialog(message, "", "", owner);
+    }
+    public static MessageBoxResult ShowQuestionOKCancelDialog(string message, string appendedMessage, Window owner)
+    {
+        return ShowQuestionOKCancelDialog(message, appendedMessage, "", owner);
+    }
+
+
+    public static MessageBoxResult ShowQuestionOKCancelDialog(string message, string appendedMessage, string help, Window owner)
+    {
+        owner.Opacity = 0.7;
+        var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.OKCancel, MessageBoxImage.Question, owner);
+        cls.ShowDialog();
+        owner.Opacity = 1;
+        return cls.Result;
+    }
+
+
+    public static MessageBoxResult ShowQuestionOKCancelCustomCaptionDialog(string message, string okCaption, string cancelCaption, Window owner)
+    {
+        return ShowQuestionOKCancelCustomCaptionDialog(message, "", "", okCaption, cancelCaption, owner);
+    }
+    public static MessageBoxResult ShowQuestionOKCancelCustomCaptionDialog(string message, string appendedMessage, string okCaption, string cancelCaption, Window owner)
+    {
+        return ShowQuestionOKCancelCustomCaptionDialog(message, appendedMessage, "", okCaption, cancelCaption, owner);
+    }
+    public static MessageBoxResult ShowQuestionOKCancelCustomCaptionDialog(string message, string appendedMessage, string help, string okCaption, string cancelCaption, Window owner)
+    {
+        owner.Opacity = 0.7;
+        var cls = new MessageBoxEx(message, appendedMessage, help, MessageBoxButton.OKCancel, MessageBoxImage.Question, owner)
+        {
+            OKCaption = okCaption,
+            CancelCaption = cancelCaption
+        };
         cls.ShowDialog();
         owner.Opacity = 1;
         return cls.Result;
@@ -231,6 +397,32 @@ public static class MessageEx
         return cls.Result;
     }
 
+    public static MessageBoxResult ShowDialog(string message, string appendedMessage, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage)
+    {
+        return ShowDialog(message, appendedMessage, "", messageBoxButton, messageBoxImage);
+    }
+
+    public static MessageBoxResult ShowDialog(string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage)
+    {
+        var cls = new MessageBoxEx(message, appendedMessage, help, messageBoxButton, messageBoxImage);
+        cls.ShowDialog();
+        return cls.Result;
+    }
+
+    public static MessageBoxResult ShowDialog(string message, string appendedMessage, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Window owner)
+    {
+        return ShowDialog(message, appendedMessage, "", messageBoxButton, messageBoxImage, owner);
+    }
+
+    public static MessageBoxResult ShowDialog(string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Window owner)
+    {
+        owner.Opacity = 0.7;
+        var cls = new MessageBoxEx(message, appendedMessage, help, messageBoxButton, messageBoxImage, owner);
+        cls.ShowDialog();
+        owner.Opacity = 1;
+        return cls.Result;
+    }
+
     /// <summary>
     /// General Show Dialog
     /// </summary>
@@ -276,7 +468,78 @@ public static class MessageEx
         return cls.Result;
     }
 
+
+    public static MessageBoxResult ShowMessageBoxEx( string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color, Dictionary<string, object> properties)
+    {
+        //if (messageBoxExInstance is null) return MessageBoxResult.None;
+        //messageBoxExInstance.Message = message;
+        //messageBoxExInstance.AppendedMessage = appendedMessage;
+        //messageBoxExInstance.Help = help;
+        //messageBoxExInstance.Button = messageBoxButton;
+        //messageBoxExInstance.Image = messageBoxImage;
+        //messageBoxExInstance.Color = color;
+
+        //messageBoxExInstance.ShowDialog();
+        //return messageBoxExInstance.Result;
+
+
+        var cls = new MessageBoxEx(message, appendedMessage, help, messageBoxButton, messageBoxImage, color);
+        foreach (var item in properties)
+        {
+            SetValue(cls, item.Key, item.Value);
+        }
+
+        //SetValue(cls, "Height", 600);
+        //SetValue(cls, "MaxHeight", 600);
+        //SetValue(cls, "Width", 400);
+        //SetValue(cls, "Message", "aaaaaaaaaaaa");
+        //SetValue(cls, "SizeToContent", SizeToContent.Manual);
+
+        cls.ShowDialog();
+        return cls.Result;
+    }
+
+    public static MessageBoxResult ShowMessageBoxEx(string message, string appendedMessage, string help, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color,  Dictionary<string, object> properties, Window owner)
+    {
+        owner.Opacity = 0.7;
+        var cls = new MessageBoxEx(message, appendedMessage, help, messageBoxButton, messageBoxImage, color, owner);
+        foreach (var item in properties)
+        {
+            SetValue(cls, item.Key, item.Value);
+        }
+        cls.ShowDialog();
+        owner.Opacity = 1;
+        return cls.Result;
+    }
     #endregion
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="sender"></param>
+    /// <param name="propertyName"></param>
+    /// <param name="value"></param>
+    /// <see href="https://dev.to/karenpayneoregon/dynamically-set-property-value-in-a-class-at-runtime-ci6"/>
+    public static void SetValue<T>(this T sender, string propertyName, object value)
+    {
+        var propertyInfo = sender.GetType().GetProperty(propertyName);
+
+        if (propertyInfo is null) return;
+
+        var type = Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType;
+
+        if (propertyInfo.PropertyType.IsEnum)
+        {
+            propertyInfo.SetValue(sender, Enum.Parse(propertyInfo.PropertyType, value.ToString()!));
+        }
+        else
+        {
+            var safeValue = (value == null) ? null : Convert.ChangeType(value, type);
+            propertyInfo.SetValue(sender, safeValue, null);
+        }
+    }
+
 }
 
 public partial class MessageBoxEx : Window
@@ -351,7 +614,13 @@ public partial class MessageBoxEx : Window
     /// Border Background
     /// </summary>
     public Brush BackgroundColor { get; set; } = Brushes.White;
-
+    public string BackgroundString
+    {
+        set
+        {
+            BackgroundColor = (SolidColorBrush)new BrushConverter().ConvertFromString(value);
+        }
+    }
     #endregion
 
     #region Initializer
@@ -458,11 +727,21 @@ public partial class MessageBoxEx : Window
 
     private void CopyMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        var ctrl = (MenuItem)sender;
-        if (ctrl is not null)
+        try
         {
-            var s = Message + (string.IsNullOrEmpty(AppendedMessage) ? "" : "\r\n" + AppendedMessage);
-            Clipboard.SetText(s);
+
+
+            var ctrl = (MenuItem)sender;
+            if (ctrl is not null)
+            {
+                var s = Message + (string.IsNullOrEmpty(AppendedMessage) ? "" : "\r\n" + AppendedMessage);
+                Clipboard.SetText(s);
+            }
+        }
+        catch (Exception)
+        {
+
+
         }
     }
 
@@ -587,4 +866,10 @@ public partial class MessageBoxEx : Window
         {
         }
     }
+}
+
+
+public interface IMessageBoxEx
+{
+
 }

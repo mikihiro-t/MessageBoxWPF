@@ -11,7 +11,7 @@ Alternative MessageBox for WPF.
 [Screenshots and Japanese manual](https://qiita.com/hiro_t/items/5a2637179d6f580738de/)
 
 ## System Requirements
-- .NET 6
+- .NET 8
 
 ## History
 - 2024-03-22 Ver 1.1

@@ -1,6 +1,15 @@
-Credits & Licenses for third-party libraries
+﻿Credits & Licenses for third-party libraries
 
 Fluent UI System Icons
     Copyright(c) 2020 Microsoft Corporation
     MIT License
     https://github.com/microsoft/fluentui-system-icons
+
+CommunityToolkit.Mvvm
+    Copyright © .NET Foundation and Contributors
+    MIT License
+    https://github.com/CommunityToolkit/dotnet
+
+Microsoft.Extensions.Hosting
+    Copyright (c) .NET Foundation and Contributors
+    MIT License
