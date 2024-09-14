@@ -1,11 +1,8 @@
-using Xunit;
-using MessageBoxWPF.Demo;
-using System.Reflection;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using MessageBoxWPF.Demo.Service;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Media;
-using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace MessageBoxWPF.Demo.Tests;
 
@@ -36,7 +33,7 @@ public class UnitTest1 : IClassFixture<UnitTestFixture>
 
 public class DialogServiceTest : IDialogService
 {
-    public string WindowGuid { get; set; }
+    public string WindowGuid { get; set; } = "";
 
     public MessageBoxResult Show(string message, string messageAppend, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage, Brush color)
     {

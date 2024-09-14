@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,10 @@ using System.Windows.Shapes;
 
 namespace MessageBoxWPF.Demo;
 
+/// <summary>
+/// The DI container is not used.
+/// The MessageEx Class or MessageBoxEx Class is used.
+/// </summary>
 public partial class MessageExView : Window
 {
     public MessageExView()

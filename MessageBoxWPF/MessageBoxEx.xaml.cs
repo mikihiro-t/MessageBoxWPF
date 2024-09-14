@@ -510,12 +510,16 @@ public static class MessageEx
     }
 
     /// <summary>
-    ///
+    /// Dynamically set property value
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="sender"></param>
-    /// <param name="propertyName"></param>
-    /// <param name="value"></param>
+    /// <param name="sender">Generic type</param>
+    /// <param name="propertyName">Property name to set value for</param>
+    /// <param name="value">Value to set for property</param>
+    /// <remarks>
+    /// Currently setup for general types and enum. For other types
+    /// check out "Is" Properties and handles the type as done with enum below
+    /// </remarks>
+    /// <see href="https://github.com/karenpayneoregon/dynamic-property-value/blob/master/BaseLibrary/Extensions.cs"/>
     /// <see href="https://dev.to/karenpayneoregon/dynamically-set-property-value-in-a-class-at-runtime-ci6"/>
     public static void SetValue<T>(this T sender, string propertyName, object value)
     {

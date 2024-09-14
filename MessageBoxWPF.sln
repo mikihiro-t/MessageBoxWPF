@@ -14,7 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{70B97CE0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBoxWPF.Demo", "MessageBoxWPF.Demo\MessageBoxWPF.Demo.csproj", "{B748909E-8AF2-481E-8CC8-39E6646B0F5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBoxWPF.Demo.Tests", "MessageBoxWPF.Demo.Tests\MessageBoxWPF.Demo.Tests.csproj", "{CBD4A1BF-7189-4C7B-9E92-3E054600AA3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBoxWPF.Demo.Tests", "MessageBoxWPF.Demo.Tests\MessageBoxWPF.Demo.Tests.csproj", "{CBD4A1BF-7189-4C7B-9E92-3E054600AA3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{30C304DB-FB64-4CAA-A6A6-5D1429C6B6BE}"
+	ProjectSection(SolutionItems) = preProject
+		assets\Screenshot1.png = assets\Screenshot1.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

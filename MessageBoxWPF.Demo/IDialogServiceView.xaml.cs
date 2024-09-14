@@ -6,6 +6,9 @@ using System.Windows.Media;
 
 namespace MessageBoxWPF.Demo;
 
+/// <summary>
+/// Use IDialogService to display a dialog
+/// </summary>
 public partial class IDialogServiceView : Window
 {
     private readonly IDialogService _dialogService = Ioc.Default.GetRequiredService<IDialogService>();
@@ -14,7 +17,7 @@ public partial class IDialogServiceView : Window
     {
         InitializeComponent();
 
-        Tag = _dialogService.WindowGuid;
+        Tag = _dialogService.WindowGuid; //for show OnWindow
     }
 
     private void ShowInformationButton_Click(object sender, RoutedEventArgs e)
