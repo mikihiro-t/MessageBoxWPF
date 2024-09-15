@@ -22,6 +22,9 @@ Alternative MessageBox for WPF.
 
 ## History
 - 2024-09-15 Ver 2.0
+	- Change to .NET 8
+	- Add the help button
+	- Add Support for DI container
 - 2024-03-22 Ver 1.1
 - 2022-02-06 Ver 1.0
 
